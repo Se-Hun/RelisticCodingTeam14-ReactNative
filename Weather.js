@@ -5,8 +5,10 @@ import { LinearGradient } from 'expo';
 export default class Weather extends Component {
     render() {
         return(
+            //LinearGradient 컴포넌트는 색깔을 여러개 지정해서 Gradient처럼 나올 수 있다.
             <LinearGradient colors={["#00C6FB", "#005BEA"]} style={styles.container}>
                 <View style={styles.upper}>
+                    {/*밑에 Icon 작업할것!*/}
                     <Text>Icon here!</Text>
                     <Text style={styles.temp}>38º</Text>
                 </View>
