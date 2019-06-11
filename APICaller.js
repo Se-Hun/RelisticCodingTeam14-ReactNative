@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Weather from './Weather';
+import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import WeatherDetailScreen from './WeatherDetailScreen';
 
 export default class APICaller extends Component {
     static navigationOptions = ({ navigation }) => {
@@ -35,13 +35,15 @@ export default class APICaller extends Component {
         return(
             <View style={styles.container}>
                 {isLoaded ? (
-                    <Weather
+                    <WeatherDetailScreen
                         temperature={this.state.main.temp}
                         name={this.state.weather[0].main}/>
                 ) : (
-                    <View style={styles.loading}>
-                        <Text>Getting the weather ...</Text>
-                    </View>)}
+                    <ActivityIndicator
+                        size="large"
+                        style={styles.loading}
+                        animtating={true}/>
+                    )}
             </View>
         )
     }
@@ -50,10 +52,11 @@ export default class APICaller extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        justifyContent: 'center'
     },
     loading: {
-        flex: 1,
-        backgroundColor: '#FDF6AA'
+        flexDirection: 'row',
+        justifyContent: 'space-around',
     }
 })
