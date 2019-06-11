@@ -4,13 +4,16 @@ import { LinearGradient } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
 
 export default class Weather extends Component {
+
     render() {
+        const celsius = this.props.temperature - 273.15;
+
         return(
             //LinearGradient 컴포넌트는 색깔을 여러개 지정해서 Gradient처럼 나올 수 있다.
             <LinearGradient colors={["#00C6FB", "#005BEA"]} style={styles.container}>
                 <View style={styles.upper}>
                     <Ionicons color="white" size={144} name="ios-rainy" />
-                    <Text style={styles.temp}>38º</Text>
+                    <Text style={styles.temp}>{celsius.toFixed(1)}º</Text>
                 </View>
                 <View style={styles.lower}>
                     <Text style={styles.title}>Raining like a MF</Text>
@@ -20,6 +23,7 @@ export default class Weather extends Component {
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     container: {

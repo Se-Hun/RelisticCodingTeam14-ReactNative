@@ -9,15 +9,33 @@ export default class SelectInfo extends Component {
         };
     };
     state = {
-        isLoaded: true
+        isLoaded: false
+    }
+
+    componentDidMount() {
+        const { navigation } = this.props;
+        // const city = navigation.getParam('city', null);
+        const city = 'Daejeon';
+
+        fetch(`http://demo6468405.mockable.io/weather-crawlers/current-weathers/by-city-name/${city}`)
+            .then(response => response.json())
+            .then(info => {
+            this.setState({
+                ...info,
+                isLoaded: true,
+                });
+            //console.log(this.state);
+                console.log(this.state.main)
+            });
     }
 
     render() {
         const isLoaded = this.state.isLoaded;
+
         return(
             <View style={styles.container}>
                 {isLoaded ? (
-                    <Weather/>
+                    <Weather temperature={this.state.main.temp}/>
                 ) : (
                     <View style={styles.loading}>
                         <Text>Getting the weather ...</Text>
