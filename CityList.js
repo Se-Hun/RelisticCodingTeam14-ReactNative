@@ -28,7 +28,7 @@ export default class CityList extends React.Component {
 
   onPressCity(item) {
     this.props.navigation.navigate(
-      'Detail',
+      'Select',
       {
         city: item
       }
