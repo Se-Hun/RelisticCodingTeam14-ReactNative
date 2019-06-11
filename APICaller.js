@@ -25,7 +25,7 @@ export default class APICaller extends Component {
                 isLoaded: true,
                 });
             //console.log(this.state);
-                console.log(this.state.main)
+                //console.log(this.state.main)
             });
     }
 

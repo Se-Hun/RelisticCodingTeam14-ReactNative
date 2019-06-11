@@ -5,19 +5,97 @@ import { Ionicons } from '@expo/vector-icons';
 
 export default class Weather extends Component {
 
+    weatherCases = {
+        Rain: {
+            colors: ["#00C6FB", "#005BEA"],
+            title: "Raining",
+            icon: 'ios-rainy'
+        },
+        Clear: {
+            colors: ["#FEF253", "#FF7300"],
+            title: "Sunny",
+            icon: 'ios-sunny'
+        },
+        Thunderstorm: {
+            colors: ["#00ECBC", "#007ADF"],
+            title: "Thunderstorm",
+            icon: 'ios-thunderstorm'
+        },
+        Clouds: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Clouds",
+            icon: 'ios-cloudy'
+        },
+        Snow: {
+            colors: ["#7DE2FC", "#B9B6E5"],
+            title: "Snow",
+            icon: 'ios-snow'
+        },
+        Drizzle: {
+            colors: ["#89F7FE", "#66A6FF"],
+            title: "Drizzle",
+            icon: 'ios-water'
+        },
+        Haze: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Mist: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Smoke: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Dust: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Fog: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Sand: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Ash: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Squall: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        },
+        Tornado: {
+            colors: ["#D7D2CC", "#304352"],
+            title: "Haze",
+            icon: 'ios-cloudy'
+        }
+    }
+
     render() {
         const celsius = this.props.temperature - 273.15;
+        //console.log(this.props.name)
 
         return(
             //LinearGradient 컴포넌트는 색깔을 여러개 지정해서 Gradient처럼 나올 수 있다.
-            <LinearGradient colors={["#00C6FB", "#005BEA"]} style={styles.container}>
+            <LinearGradient colors={this.weatherCases[this.props.name].colors} style={styles.container}>
                 <View style={styles.upper}>
-                    <Ionicons color="white" size={144} name="ios-rainy" />
+                    <Ionicons color="white" size={144} name={this.weatherCases[this.props.name].icon} />
                     <Text style={styles.temp}>{celsius.toFixed(1)}º</Text>
                 </View>
                 <View style={styles.lower}>
-                    <Text style={styles.title}>Raining like a MF</Text>
-                    <Text style={styles.subtitle}>For more info look outside</Text>
+                    <Text style={styles.title}>{this.weatherCases[this.props.name].title}</Text>
                 </View>
             </LinearGradient>
         )
@@ -43,21 +121,14 @@ const styles = StyleSheet.create({
     },
     lower: {
         flex: 1,
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'flex-end',
-        paddingLeft: 25
     },
     title: {
-        fontSize: 38,
+        fontSize: 45,
         backgroundColor: 'transparent',
         color: 'white',
-        marginBottom: 10,
+        marginBottom: 20,
         fontWeight: '300'
-    },
-    subtitle: {
-        fontSize: 24,
-        backgroundColor: 'transparent',
-        color: 'white',
-        marginBottom: 24
     }
 })
