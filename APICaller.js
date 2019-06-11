@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Weather from './Weather';
 
-export default class SelectInfo extends Component {
+export default class APICaller extends Component {
     static navigationOptions = ({ navigation }) => {
         return {
             title: `Weather Info: ${navigation.getParam('city', 'Unknown')}`,
@@ -35,7 +35,9 @@ export default class SelectInfo extends Component {
         return(
             <View style={styles.container}>
                 {isLoaded ? (
-                    <Weather temperature={this.state.main.temp}/>
+                    <Weather
+                        temperature={this.state.main.temp}
+                        name={this.state.weather[0].main}/>
                 ) : (
                     <View style={styles.loading}>
                         <Text>Getting the weather ...</Text>
